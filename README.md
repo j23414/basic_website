@@ -1,6 +1,6 @@
 # Basic Website
 
-* [Live Site](https://j23414.github.io/basic_website/)
+* <a href="https://j23414.github.io/basic_website/" target="_blank">Live Site</a>
 
 Review webdev technology from basics
 
