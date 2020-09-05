@@ -1,5 +1,12 @@
-* {
-  font-family: Arial;
+
+/* default settings */
+body {
+    color:#3b2f2f;
+}
+
+/* applied to all html elements */
+*{
+    font-family: Arial;
 }
 
 .header {
@@ -30,7 +37,8 @@
   text-align: center;
   text-decoration: none;
   border-radius: 50%;
-  color: #6f4e37;
+  /*  color: #6f4e37; */
+  color: #3b2f2f;
 }
 
 .fa:hover {
