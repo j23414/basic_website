@@ -1,7 +1,19 @@
 
 /* default settings */
 body {
-    color:#3b2f2f;
+/*    color:#3b2f2f;*/
+  color:#392C20;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  color:#885224;
+  text-decoration:none;
+}
+
+a:hover{
+  text-decoration: underline;
+
 }
 
 /* applied to all html elements */
@@ -44,5 +56,3 @@ body {
 .fa:hover {
     opacity: 0.7;
 }
-
-
