@@ -71,6 +71,12 @@ a:hover{
   margin: auto;
 }
 
+/* responsive image */
+.responsive_center {
+  width:100%;
+  height:auto;
+}
+
 /* code blocks */
 
 code {
