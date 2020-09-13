@@ -35,6 +35,14 @@ body {
     font-family: Arial;
 }
 
+p {
+  line-height: 1.6;
+}
+
+/* goodreads header */
+h2 a {
+  color:inherit;
+}
 a {
   color:#885224;
   text-decoration:none;

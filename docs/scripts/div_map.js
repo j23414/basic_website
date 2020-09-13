@@ -1,5 +1,5 @@
 // Size ?
-var width_b = 460
+var width_b = 400
 var height_b = 400
 
 // The svg
@@ -48,10 +48,11 @@ var markers = [{
 ];
 
 // Load external data and boot
-d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson", function(data) {
-
+d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson",
+  function(data) {
   // Filter data
   data.features = data.features.filter(function(d) {
+    //return d.properties.name == "USA"
     return d.properties.name == "France"
   })
 
@@ -71,7 +72,7 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
   // create a tooltip
   var Tooltip_b = d3.select("#div_map")
     .append("div")
-    .attr("class", "tooltip")
+    .attr("class", "tooltip_b")
     .style("opacity", 1)
     .style("background-color", "white")
     .style("border", "solid")
@@ -115,4 +116,6 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
 
-})
+}
+
+)

@@ -1,28 +1,36 @@
-
 // set the dimensions and margins of the graph
-var margin_a = {top: 80, right: 25, bottom: 30, left: 40},
-  width_a = 450 - margin_a.left - margin_a.right,
-  height_a = 450 - margin_a.top - margin_a.bottom;
+var margin_a = {
+    top: 30,
+    right: 20,
+    bottom: 30,
+    left: 20
+  },
+  width_a = 375 - margin_a.left - margin_a.right,
+  height_a = 375 - margin_a.top - margin_a.bottom;
 
 // append the svg object to the body of the page
 var svg_a = d3.select("#div_heatmap")
-.append("svg")
+  .append("svg")
   .attr("width", width_a + margin_a.left + margin_a.right)
   .attr("height", height_a + margin_a.top + margin_a.bottom)
-.append("g")
+  .append("g")
   .attr("transform",
-        "translate(" + margin_a.left + "," + margin_a.top + ")");
+    "translate(" + margin_a.left + "," + margin_a.top + ")");
 
 //Read the data
 d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/heatmap_data.csv", function(data) {
 
   // Labels of row and columns -> unique identifier of the column called 'group' and 'variable'
-  var myGroups = d3.map(data, function(d){return d.group;}).keys()
-  var myVars = d3.map(data, function(d){return d.variable;}).keys()
+  var myGroups = d3.map(data, function(d) {
+    return d.group;
+  }).keys()
+  var myVars = d3.map(data, function(d) {
+    return d.variable;
+  }).keys()
 
   // Build X scales and axis:
   var x = d3.scaleBand()
-    .range([ 0, width_a ])
+    .range([0, width_a])
     .domain(myGroups)
     .padding(0.05);
   svg_a.append("g")
@@ -33,7 +41,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/he
 
   // Build Y scales and axis:
   var y = d3.scaleBand()
-    .range([ height_a, 0 ])
+    .range([height_a, 0])
     .domain(myVars)
     .padding(0.05);
   svg_a.append("g")
@@ -44,7 +52,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/he
   // Build color scale
   var myColor = d3.scaleSequential()
     .interpolator(d3.interpolateInferno)
-    .domain([1,100])
+    .domain([1, 100])
 
   // create a tooltip
   var tooltip_a = d3.select("#div_heatmap")
@@ -85,19 +93,27 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/he
 
   // add the squares
   svg_a.selectAll()
-    .data(data, function(d) {return d.group+':'+d.variable;})
+    .data(data, function(d) {
+      return d.group + ':' + d.variable;
+    })
     .enter()
     .append("rect")
-      .attr("x", function(d) { return x(d.group) })
-      .attr("y", function(d) { return y(d.variable) })
-      .attr("rx", 4)
-      .attr("ry", 4)
-      .attr("width", x.bandwidth() )
-      .attr("height", y.bandwidth() )
-      .style("fill", function(d) { return myColor(d.value)} )
-      .style("stroke-width", 4)
-      .style("stroke", "none")
-      .style("opacity", 0.8)
+    .attr("x", function(d) {
+      return x(d.group)
+    })
+    .attr("y", function(d) {
+      return y(d.variable)
+    })
+    .attr("rx", 4)
+    .attr("ry", 4)
+    .attr("width", x.bandwidth())
+    .attr("height", y.bandwidth())
+    .style("fill", function(d) {
+      return myColor(d.value)
+    })
+    .style("stroke-width", 4)
+    .style("stroke", "none")
+    .style("opacity", 0.8)
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
@@ -105,11 +121,11 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/he
 
 // Add title to graph
 svg_a.append("text")
-        .attr("x", 0)
-        .attr("y", -50)
-        .attr("text-anchor", "left")
-        .style("font-size", "22px")
-        .text("A d3.js heatmap");
+  .attr("x", 0)
+  .attr("y", -10)
+  .attr("text-anchor", "left")
+  .style("font-size", "22px")
+  .text("Heatmap");
 
 // Add subtitle to graph
 //svg_a.append("text")
