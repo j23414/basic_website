@@ -1,21 +1,21 @@
 // Size ?
-var width_b = 400
-var height_b = 400
+let width_b = 400
+let height_b = 400
 
 // The svg
-var svg_b = d3.select("#div_map")
+let svg_b = d3.select("#div_map")
   .append("svg")
   .attr("width", width_b)
   .attr("height", height_b)
 
 // Map and projection
-var projection = d3.geoMercator()
+let projection = d3.geoMercator()
   .center([4, 47]) // GPS of location to zoom on
   .scale(1020) // This is like the zoom
   .translate([width_b / 2, height_b / 2])
 
 // Create data for circles:
-var markers = [{
+let markers = [{
     long: 9.083,
     lat: 42.149,
     name: "Corsica"
@@ -70,7 +70,7 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
     .style("opacity", .3)
 
   // create a tooltip
-  var Tooltip_b = d3.select("#div_map")
+  let Tooltip_b = d3.select("#div_map")
     .append("div")
     .attr("class", "tooltip_b")
     .style("opacity", 1)
@@ -81,16 +81,16 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
     .style("padding", "5px")
 
   // Three function that change the tooltip when user hover / move / leave a cell
-  var mouseover = function(d) {
+  let mouseover = function(d) {
     Tooltip_b.style("opacity", 1)
   }
-  var mousemove = function(d) {
+  let mousemove = function(d) {
     Tooltip_b
       .html(d.name + "<br>" + "long: " + d.long + "<br>" + "lat: " + d.lat)
       .style("left", (d3.mouse(this)[0] + 10) + "px")
       .style("top", (d3.mouse(this)[1]) + "px")
   }
-  var mouseleave = function(d) {
+  let mouseleave = function(d) {
     Tooltip_b.style("opacity", 0)
   }
 

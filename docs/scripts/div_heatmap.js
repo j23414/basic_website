@@ -1,5 +1,5 @@
 // set the dimensions and margins of the graph
-var margin_a = {
+let margin_a = {
     top: 30,
     right: 20,
     bottom: 30,
@@ -9,7 +9,7 @@ var margin_a = {
   height_a = 375 - margin_a.top - margin_a.bottom;
 
 // append the svg object to the body of the page
-var svg_a = d3.select("#div_heatmap")
+let svg_a = d3.select("#div_heatmap")
   .append("svg")
   .attr("width", width_a + margin_a.left + margin_a.right)
   .attr("height", height_a + margin_a.top + margin_a.bottom)
@@ -21,15 +21,15 @@ var svg_a = d3.select("#div_heatmap")
 d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/heatmap_data.csv", function(data) {
 
   // Labels of row and columns -> unique identifier of the column called 'group' and 'variable'
-  var myGroups = d3.map(data, function(d) {
+  let myGroups = d3.map(data, function(d) {
     return d.group;
   }).keys()
-  var myVars = d3.map(data, function(d) {
+  let myVars = d3.map(data, function(d) {
     return d.variable;
   }).keys()
 
   // Build X scales and axis:
-  var x = d3.scaleBand()
+  let x = d3.scaleBand()
     .range([0, width_a])
     .domain(myGroups)
     .padding(0.05);
@@ -40,7 +40,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/he
     .select(".domain").remove()
 
   // Build Y scales and axis:
-  var y = d3.scaleBand()
+  let y = d3.scaleBand()
     .range([height_a, 0])
     .domain(myVars)
     .padding(0.05);
@@ -50,12 +50,12 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/he
     .select(".domain").remove()
 
   // Build color scale
-  var myColor = d3.scaleSequential()
+  let myColor = d3.scaleSequential()
     .interpolator(d3.interpolateInferno)
     .domain([1, 100])
 
   // create a tooltip
-  var tooltip_a = d3.select("#div_heatmap")
+  let tooltip_a = d3.select("#div_heatmap")
     .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip_a")
@@ -66,7 +66,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/he
     .style("padding", "5px")
 
   // Three function that change the tooltip when user hover / move / leave a cell
-  var mouseover = function(d) {
+  let mouseover = function(d) {
     tooltip_a
       .style("opacity", 1)
     d3.select(this)
@@ -75,7 +75,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/he
       .style("top", (d3.event.pageY + 16) + "px")
       .style("left", (d3.event.pageX + 16) + "px");
   }
-  var mousemove = function(d) {
+  let mousemove = function(d) {
     tooltip_a
       .html("The exact value of<br>this cell is: " + d.value)
       //.style("left", (d3.mouse(this)[0]+70) + "px")
@@ -83,7 +83,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/he
       .style("top", (d3.event.pageY + 16) + "px")
       .style("left", (d3.event.pageX + 16) + "px");
   }
-  var mouseleave = function(d) {
+  let mouseleave = function(d) {
     tooltip_a
       .style("opacity", 0)
     d3.select(this)
